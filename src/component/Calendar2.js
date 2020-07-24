@@ -8,12 +8,26 @@ import '../calendar.css'
 
 export default class DemoApp extends React.Component {
 
-  state = {
-    weekendsVisible: true,
-    currentEvents: []
+//   state = {
+//     weekendsVisible: true,
+//     currentEvents: []
+//   }
+
+constructor(props){
+    super(props)
+    this.state = {
+      weekendsVisible: true,
+      currentEvents: this.props.logs
+    }
   }
 
+
+//   {
+//     initialView: 'timeline', 
+//     duration: { days: 3 }
+//   });
   render() {
+    //   debugger
     return (
       <div className='demo-app'>
         {this.renderSidebar()}
@@ -23,9 +37,12 @@ export default class DemoApp extends React.Component {
             headerToolbar={{
               left: 'prev,next today',
               center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            //   right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            right: ''
+
             }}
             initialView='dayGridMonth'
+            // initialView='timeline'
             editable={true}
             selectable={true}
             selectMirror={true}
@@ -41,6 +58,9 @@ export default class DemoApp extends React.Component {
             eventChange={function(){}}
             eventRemove={function(){}}
             */
+
+           events={this.formatEvents()}
+
           />
         </div>
       </div>
@@ -63,7 +83,7 @@ export default class DemoApp extends React.Component {
             <input
               type='checkbox'
               checked={this.state.weekendsVisible}
-              onChange={this.handleWeekendsToggle}
+            //   onChange={this.handleWeekendsToggle}
             ></input>
             toggle weekends
           </label>
@@ -78,11 +98,11 @@ export default class DemoApp extends React.Component {
     )
   }
 
-  handleWeekendsToggle = () => {
-    this.setState({
-      weekendsVisible: !this.state.weekendsVisible
-    })
-  }
+//   handleWeekendsToggle = () => {
+//     this.setState({
+//       weekendsVisible: !this.state.weekendsVisible
+//     })
+//   }
 
   handleDateSelect = (selectInfo) => {
     let title = prompt('Please enter a new title for your event')
@@ -113,6 +133,25 @@ export default class DemoApp extends React.Component {
     })
   }
 
+  formatEvents = () => {
+    // debugger
+    return this.state.currentEvents.map(log => {
+      const {title, start} = log
+      
+
+      let startTime = new Date(start)
+      
+
+      return {
+        title: title,
+        start: startTime,
+        allDay: true
+        
+        // extendedProps: {...log}
+      }
+    })
+
+}
 }
 
 function renderEventContent(eventInfo) {
