@@ -27,7 +27,7 @@ constructor(props){
 //     duration: { days: 3 }
 //   });
   render() {
-    //   debugger
+      // debugger
     return (
       <div className='demo-app'>
         {this.renderSidebar()}
@@ -48,7 +48,8 @@ constructor(props){
             selectMirror={true}
             dayMaxEvents={true}
             weekends={this.state.weekendsVisible}
-            initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
+            // initialEvents={INITIAL_EVENTS}
+             // alternatively, use the `events` setting to fetch from a feed
             select={this.handleDateSelect}
             eventContent={renderEventContent} // custom render function
             eventClick={this.handleEventClick}
@@ -59,7 +60,8 @@ constructor(props){
             eventRemove={function(){}}
             */
 
-           events={this.formatEvents()}
+           initialEvents={this.formatEvents()}
+          // events={INITIAL_EVENTS}
 
           />
         </div>
@@ -68,6 +70,7 @@ constructor(props){
   }
 
   renderSidebar() {
+    // debugger
     return (
       <div className='demo-app-sidebar'>
         <div className='demo-app-sidebar-section'>
@@ -105,6 +108,7 @@ constructor(props){
 //   }
 
   handleDateSelect = (selectInfo) => {
+    //redirect or doing this form in a modal
     let title = prompt('Please enter a new title for your event')
     let calendarApi = selectInfo.view.calendar
 
@@ -139,15 +143,19 @@ constructor(props){
       const {title, start} = log
       
 
-      let startTime = new Date(start)
+      let startTime = new Date(start).toISOString().replace(/T.*$/, '')
       
-
+      //make a condition here or turnary inside return
       return {
+        id: log.id,
         title: title,
         start: startTime,
-        allDay: true
+        allDay: true,
+        display: 'background',
+        color: '#ff9f89',
+
         
-        // extendedProps: {...log}
+        extendedProps: {...log}
       }
     })
 
@@ -163,10 +171,16 @@ function renderEventContent(eventInfo) {
   )
 }
 function renderSidebarEvent(event) {
+console.log(event)
   return (
     <li key={event.id}>
       <b>{formatDate(event.start, {year: 'numeric', month: 'short', day: 'numeric'})}</b>
       <i>{event.title}</i>
+      <br></br>
+      <i>{event.extendedProps && event.extendedProps.mood}</i>
+      <br></br>
+      <i>{event.extendedProps && event.extendedProps.water}</i>
+      {/* if there are extendedprops render mood, if not render ntohing */}
     </li>
   )
 }

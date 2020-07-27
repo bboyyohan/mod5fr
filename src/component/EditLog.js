@@ -58,21 +58,21 @@ class EditLog extends React.Component {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label" > Cups of water: </label>
                             <div className="col-sm-10">
-                                <input  name="water" value={this.state.value} onChange={this.changeHandler} className="form-control" />
+                                <input  name="water" value={this.state.water} onChange={this.changeHandler} className="form-control" />
                             </div>
                     </div>
 
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label" > Mood: </label>
                             <div className="col-sm-10">
-                                <input  name="mood" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
+                                <input  name="mood" value={this.state.mood} onChange={this.changeHandler} className="form-control"  />
                             </div>
                     </div>
 
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label" > Note: </label>
                             <div className="col-sm-10">
-                                <input  name="note" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
+                                <input  name="note" value={this.state.note} onChange={this.changeHandler} className="form-control"  />
                             </div>
                     </div>
 

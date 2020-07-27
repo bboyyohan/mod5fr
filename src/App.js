@@ -105,8 +105,9 @@ class App extends React.Component {
         <Navbar currentUser={this.currentUser}/>
           <Switch>
               <Route exact path="/" render={() =>
-                // this.state.currentUser ? <Redirect to='/logs' /> : <ContentContainer component={Home} />
-                this.state.currentUser ? <Redirect to='/logs' /> : <Home />
+                // this.state.currentUser ? <Redirect to='/logs' /> : <Home />
+                <Home />
+                // changed since user couldnt access home page if logged in
               }/>
 
               <Route path="/logs" render={() =>
