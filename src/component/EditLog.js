@@ -1,6 +1,8 @@
 //Got lazy and just copied the newLog.js, and edit some stuff
 // later maybe see if i can come up with a conditional inside newlog.js so i wont need this editlog.js
 
+//changed state (meals, sleeps) + handlers + added meals sleeps input
+
 import React from 'react'
 
 
@@ -15,7 +17,9 @@ class EditLog extends React.Component {
         start: this.props.editObject.start,
         water: this.props.editObject.water,
         mood: this.props.editObject.mood,
-        title: this.props.editObject.title
+        title: this.props.editObject.title,
+        sleeps: this.props.editObject.sleeps[0].quantity,
+        meals: this.props.editObject.meals[0].quantity
     }
 
     changeHandler = (e) => {
@@ -32,7 +36,9 @@ class EditLog extends React.Component {
             start: this.state.start,
             water: this.state.water,
             mood: this.state.mood,
-            title: this.state.title
+            title: this.state.title,
+            sleeps: this.state.sleeps,
+            meals: this.state.meals
         }
         
         this.props.updateLog(updateLogObj)
@@ -66,6 +72,20 @@ class EditLog extends React.Component {
                         <label className="col-sm-2 col-form-label" > Mood: </label>
                             <div className="col-sm-10">
                                 <input  name="mood" value={this.state.mood} onChange={this.changeHandler} className="form-control"  />
+                            </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" > Meals: </label>
+                            <div className="col-sm-10">
+                                <input  name="meals" value={this.state.meals} onChange={this.changeHandler} className="form-control"  />
+                            </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" > Hours Slept: </label>
+                            <div className="col-sm-10">
+                                <input  name="sleeps" value={this.state.sleeps} onChange={this.changeHandler} className="form-control"  />
                             </div>
                     </div>
 

@@ -23,14 +23,20 @@ class App extends React.Component {
 
   }
 
-  currentUser = (user, logs) => {
-    let dateSort = logs.sort(function(a, b) {
+  // currentUser = (user, logs) => {
+    currentUser = (user) => {
+
+    // let dateSort = logs.sort(function(a, b) {
+      let dateSort = user.logs.sort(function(a, b) {
+
       return new Date(a.start) - new Date(b.start)
     })
     // debugger
     // sort logs by start 
   
     this.setState({currentUser: user, logs: dateSort})
+    // this.setState({currentUser: user, logs: user.logs})
+
   }
 
   createLog = (newLogObj) => {
@@ -80,7 +86,9 @@ class App extends React.Component {
     // console.log("edit")
     debugger
     fetch(`http://localhost:3000/logs/${updateObj.id}`, {
-      method: 'PUT',
+      // method: 'PUT',
+      method: 'PATCH',
+
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'

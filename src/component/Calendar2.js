@@ -199,6 +199,7 @@ console.log(event)
       <i>Mood Rating: {event.extendedProps && event.extendedProps.mood}</i>
       <br></br>
       <i>Cups: {event.extendedProps && event.extendedProps.water} cups</i>
+  {/* <i>Sleep: {event.extendedProps && event.extendedProps.sleeps}</i> */}
       {/* if there are extendedprops render mood, if not render ntohing */}
     </li>
   )

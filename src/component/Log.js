@@ -33,7 +33,10 @@ class Log extends React.Component {
                             <Card.Title> Mood Rating: {this.props.logObj.mood}</Card.Title>
    
                                 <Card.Text> Drank {this.props.logObj.water} cups of water
-                                
+                                            <br/>
+                                            Slept {this.props.logObj.sleeps[0].quantity} hours
+                                            <br/>
+                                            Ate {this.props.logObj.meals[0].quantity} meals
                                 
                                 </Card.Text>
                             <Card.Footer>
