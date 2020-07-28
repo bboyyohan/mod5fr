@@ -13,7 +13,7 @@ class NewLog extends React.Component {
         start: today.getFullYear()+'-0'+(today.getMonth()+1)+'-'+today.getDate(),
         water: '',
         mood: '',
-        note: ''
+        title: ''
     }
 
     changeHandler = (e) => {
@@ -29,7 +29,7 @@ class NewLog extends React.Component {
             start: this.state.start,
             water: this.state.water,
             mood: this.state.mood,
-            note: this.state.note
+            title: this.state.title
         }
         
         this.props.createLog(newLogObj)
@@ -69,7 +69,7 @@ class NewLog extends React.Component {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label" > Note: </label>
                             <div className="col-sm-10">
-                                <input  name="note" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
+                                <input  name="title" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
                             </div>
                     </div>
 

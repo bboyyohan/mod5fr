@@ -37,8 +37,8 @@ constructor(props){
             headerToolbar={{
               left: 'prev,next today',
               center: 'title',
-            //   right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            right: ''
+              right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            // right: ''
 
             }}
             initialView='dayGridMonth'
@@ -81,16 +81,16 @@ constructor(props){
             <li>Click an event to delete it</li>
           </ul>
         </div>
-        <div className='demo-app-sidebar-section'>
+        {/* <div className='demo-app-sidebar-section'>
           <label>
             <input
               type='checkbox'
               checked={this.state.weekendsVisible}
-            //   onChange={this.handleWeekendsToggle}
+              onChange={this.handleWeekendsToggle}
             ></input>
             toggle weekends
           </label>
-        </div>
+        </div> */}
         <div className='demo-app-sidebar-section'>
           <h2>All Events ({this.state.currentEvents.length})</h2>
           <ul>
@@ -146,6 +146,10 @@ constructor(props){
       let startTime = new Date(start).toISOString().replace(/T.*$/, '')
       
       //make a condition here or turnary inside return
+      //red = bad, blue = good
+
+      let ptAvg = log.mood + log.water 
+      if (log.mood < 3){
       return {
         id: log.id,
         title: title,
@@ -156,7 +160,20 @@ constructor(props){
 
         
         extendedProps: {...log}
+      }}else {
+        return {
+        id: log.id,
+        title: title,
+        start: startTime,
+        allDay: true,
+        display: 'background',
+        color: '#33BBFF',
+
+        
+        extendedProps: {...log}
+        }
       }
+    
     })
 
 }
@@ -167,6 +184,8 @@ function renderEventContent(eventInfo) {
     <>
       <b>{eventInfo.timeText}</b>
       <i>{eventInfo.event.title}</i>
+      {/* <i>{eventInfo.event.extendedProps.water}</i> */}
+      {/* this makes it so i can render any */}
     </>
   )
 }
@@ -177,9 +196,9 @@ console.log(event)
       <b>{formatDate(event.start, {year: 'numeric', month: 'short', day: 'numeric'})}</b>
       <i>{event.title}</i>
       <br></br>
-      <i>{event.extendedProps && event.extendedProps.mood}</i>
+      <i>Mood Rating: {event.extendedProps && event.extendedProps.mood}</i>
       <br></br>
-      <i>{event.extendedProps && event.extendedProps.water}</i>
+      <i>Cups: {event.extendedProps && event.extendedProps.water} cups</i>
       {/* if there are extendedprops render mood, if not render ntohing */}
     </li>
   )

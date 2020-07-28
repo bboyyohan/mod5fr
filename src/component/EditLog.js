@@ -15,7 +15,7 @@ class EditLog extends React.Component {
         start: this.props.editObject.start,
         water: this.props.editObject.water,
         mood: this.props.editObject.mood,
-        note: this.props.editObject.note
+        title: this.props.editObject.title
     }
 
     changeHandler = (e) => {
@@ -32,7 +32,7 @@ class EditLog extends React.Component {
             start: this.state.start,
             water: this.state.water,
             mood: this.state.mood,
-            note: this.state.note
+            title: this.state.title
         }
         
         this.props.updateLog(updateLogObj)
@@ -72,7 +72,7 @@ class EditLog extends React.Component {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label" > Note: </label>
                             <div className="col-sm-10">
-                                <input  name="note" value={this.state.note} onChange={this.changeHandler} className="form-control"  />
+                                <input  name="title" value={this.state.title} onChange={this.changeHandler} className="form-control"  />
                             </div>
                     </div>
 
