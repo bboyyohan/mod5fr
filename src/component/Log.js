@@ -18,7 +18,6 @@ class Log extends React.Component {
         let editObj = this.props.logObj
         this.props.getEditObj(editObj)
     }
-
     render(){
         // debugger
         return(
@@ -34,9 +33,16 @@ class Log extends React.Component {
    
                                 <Card.Text> Drank {this.props.logObj.water} cups of water
                                             <br/>
-                                            Slept {this.props.logObj.sleeps[0].quantity} hours
+                                            {/* Slept {this.props.logObj.sleeps[0].quantity} hours
                                             <br/>
-                                            Ate {this.props.logObj.meals[0].quantity} meals
+                                            Ate {this.props.logObj.meals[0].quantity} meals */}
+                                            Ate at {this.props.logObj.meals[0] ? this.props.logObj.meals[0].name : null} {this.props.logObj.meals[0] ? this.props.logObj.meals[0].time.split("T")[1].slice(0, 5) : null}
+                                            <br/>
+                                            Slept at {this.props.logObj.sleeps[0] ? this.props.logObj.sleeps[0].start_time.split("T")[1].slice(0, 5) : null}
+                                            <br/>
+                                            Woke up at {this.props.logObj.sleeps[0] ? this.props.logObj.sleeps[0].end_time.split("T")[1].slice(0, 5) : null}
+
+                                            {/* Slept at {this.props.logObj} */}
                                 
                                 </Card.Text>
                             <Card.Footer>

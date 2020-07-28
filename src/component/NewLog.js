@@ -14,8 +14,11 @@ class NewLog extends React.Component {
         water: '',
         mood: '',
         title: '',
-        meals: '',
-        sleeps: ''
+        meal_time: '',
+        meal_name: '',
+        sleep_start: '',
+        sleep_end: ''
+
     }
 
     changeHandler = (e) => {
@@ -32,8 +35,10 @@ class NewLog extends React.Component {
             water: this.state.water,
             mood: this.state.mood,
             title: this.state.title,
-            meals: this.state.meals,
-            sleeps: this.state.sleeps
+            meal_time: this.state.meal_time,
+            meal_name: this.state.meal_name,
+            sleep_start: this.state.sleep_start,
+            sleep_end: this.state.sleep_end
         }
         
         this.props.createLog(newLogObj)
@@ -70,17 +75,38 @@ class NewLog extends React.Component {
                             </div>
                     </div>
 
-                    <div className="form-group row">
+                    {/* <div className="form-group row">
                         <label className="col-sm-2 col-form-label" > Meals: </label>
                             <div className="col-sm-10">
                                 <input  name="meals" value={this.state.meals} onChange={this.changeHandler} className="form-control"  />
                             </div>
+                    </div> */}
+
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" > What time did you eat: </label>
+                            <div className="col-sm-10">
+                                <input  name="meal_time" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
+                            </div>
                     </div>
 
                     <div className="form-group row">
-                        <label className="col-sm-2 col-form-label" > Hours Slept: </label>
+                        <label className="col-sm-2 col-form-label" > What did you eat: </label>
                             <div className="col-sm-10">
-                                <input  name="sleeps" value={this.state.sleeps} onChange={this.changeHandler} className="form-control"  />
+                                <input  name="meal_name" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
+                            </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" > What time did you sleep: </label>
+                            <div className="col-sm-10">
+                                <input  name="sleep_start" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
+                            </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" > What time did you wake up: </label>
+                            <div className="col-sm-10">
+                                <input  name="sleep_end" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
                             </div>
                     </div>
 
