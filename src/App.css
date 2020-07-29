@@ -56,3 +56,8 @@
 .button#edit {
   margin-left: 100px;
 }
+
+select {
+  word-wrap: normal;
+  max-height: 30px;
+}

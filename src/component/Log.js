@@ -19,6 +19,7 @@ class Log extends React.Component {
         this.props.getEditObj(editObj)
     }
     render(){
+        // let a = this.props.logObj.meals 
         // debugger
         return(
             // <div>
@@ -33,14 +34,38 @@ class Log extends React.Component {
    
                                 <Card.Text> Drank {this.props.logObj.water} cups of water
                                             <br/>
-                                            {/* Slept {this.props.logObj.sleeps[0].quantity} hours
+                                                {this.props.logObj.meals.map(mealObj => { 
+                                                return( 
+                                                    <div> 
+                                                          Food: {mealObj.name} <br/>
+                                                    
+                                                          Time: {mealObj.time.split("T")[1].slice(0, 5)} 
+                                                    
+                                                    </div>
+                                                )})}
+                                                <br/>
+                                            Meals Count: {this.props.logObj.meals.length}
+                                            {/* Ate {this.props.logObj.meals[0] ? this.props.logObj.meals[0].name : null} at {this.props.logObj.meals[0] ? this.props.logObj.meals[0].time.split("T")[1].slice(0, 5) : null} */}
                                             <br/>
-                                            Ate {this.props.logObj.meals[0].quantity} meals */}
-                                            Ate at {this.props.logObj.meals[0] ? this.props.logObj.meals[0].name : null} {this.props.logObj.meals[0] ? this.props.logObj.meals[0].time.split("T")[1].slice(0, 5) : null}
-                                            <br/>
-                                            Slept at {this.props.logObj.sleeps[0] ? this.props.logObj.sleeps[0].start_time.split("T")[1].slice(0, 5) : null}
-                                            <br/>
-                                            Woke up at {this.props.logObj.sleeps[0] ? this.props.logObj.sleeps[0].end_time.split("T")[1].slice(0, 5) : null}
+                                            {/* Slept at {this.props.logObj.sleeps[0] ? this.props.logObj.sleeps[0].start_time.split("T")[1].slice(0, 5) : null} */}
+                                            {/* Slept at {this.props.logObj.sleeps[0].start_time.split("T")[1].slice(0, 5)} */}
+
+                                            {this.props.logObj.sleeps.map(sleepObj => {
+                                                return(
+                                                    <div> 
+                                                        Slept around: {sleepObj.start_time.split("T")[1].slice(0, 5)} 
+                                                        <br/>
+                                                        Woke up: {sleepObj.end_time.split("T")[1].slice(0, 5)}
+                                                    
+                                                    </div>
+                            
+                                                )
+                                            })}
+                                           
+                                            {/* <br/>
+                                            Woke up at {this.props.logObj.sleeps[0].end_time.split("T")[1].slice(0, 5)} */}
+
+                                            {/* Woke up at {this.props.logObj.sleeps[0] ? this.props.logObj.sleeps[0].end_time.split("T")[1].slice(0, 5) : null} */}
 
                                             {/* Slept at {this.props.logObj} */}
                                 

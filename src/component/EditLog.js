@@ -4,7 +4,7 @@
 //changed state (meals, sleeps) + handlers + added meals sleeps input
 
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 
 
@@ -26,6 +26,7 @@ class EditLog extends React.Component {
         meal_time: this.props.editObject.meals[0].time.split("T")[1].slice(0, 5),
         sleep_start: this.props.editObject.sleeps[0].start_time.split("T")[1].slice(0, 5),
         sleep_end: this.props.editObject.sleeps[0].end_time.split("T")[1].slice(0, 5)
+        // change_page: false
     }
 
     changeHandler = (e) => {
@@ -36,6 +37,7 @@ class EditLog extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
+        // debugger 
         let updateLogObj = {
             id: this.props.editObject.id,
             user_id: this.props.currentUser.id,
@@ -46,20 +48,29 @@ class EditLog extends React.Component {
             meal_name: this.state.meal_name,
             meal_time: this.state.meal_time,
             sleep_start: this.state.sleep_start,
-            sleep_end: this.state.sleep_end
+            sleep_end: this.state.sleep_end,
             // sleeps: this.state.sleeps,
             // meals: this.state.meals
         }
         
         this.props.updateLog(updateLogObj)
+        // this.setState({
+        //     change_page: true
+        // })
+        // if (this.state.change_page === true) {
+        //     return( <Redirect to='/logs'/>)
+        // }
     }
 
  
 
     render() {
+        debugger    
+        
         return(
             <div>
                 <h3>Edit</h3>
+
                 <form onSubmit={this.handleSubmit}>
 
                     {/* bootstrap for date
@@ -133,10 +144,7 @@ class EditLog extends React.Component {
                                 <input  name="title" value={this.state.title} onChange={this.changeHandler} className="form-control"  />
                             </div>
                     </div>
-                    {/* <Link to="/logs"> */}
                         <input type="submit" value="Submit"/>
-                    {/* </Link> */}
-
                 </form>
             </div>
         )

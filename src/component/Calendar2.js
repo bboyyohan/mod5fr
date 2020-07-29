@@ -17,11 +17,22 @@ constructor(props){
     super(props)
     this.state = {
       weekendsVisible: true,
-      currentEvents: this.props.logs
+      currentEvents: this.props.logs,
+      meal: [],
+      water: [],
+      sleep: []
     }
   }
 
 
+//   handleChange = (e) => {
+//     let name  = e.target.name
+//     this.setState({
+//       [e.target.name]: this.props.logs.map(log => log.e.target.name
+// )
+//     })
+    
+//   }
 //   {
 //     initialView: 'timeline', 
 //     duration: { days: 3 }
@@ -31,8 +42,25 @@ constructor(props){
     return (
       <div className='demo-app'>
         {this.renderSidebar()}
+        <select value={this.state.value} onChange={this.handleChange}>
+            <option name="all" value={this.state.meal}>All</option>
+            <option name="meal" value={this.state.meal}>Meal</option>
+            <option name="water" value={this.state.water}>Water</option>
+            <option name="sleep" value={this.state.sleep}>Sleep</option>
+        </select>        
+        {/* <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+          <span class="caret"></span> </button>
+            <ul class="dropdown-menu">
+              <li><a href="#">HTML</a></li>
+              <li><a href="#">CSS</a></li>
+              <li><a href="#">JavaScript</a></li>
+            </ul>
+        </div> */}
+
         <div className='demo-app-main'>
           <FullCalendar
+            
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             headerToolbar={{
               left: 'prev,next today',
@@ -59,8 +87,15 @@ constructor(props){
             eventChange={function(){}}
             eventRemove={function(){}}
             */
+          //  customButtons={this.renderButton()}
 
            initialEvents={this.formatEvents()}
+           //after formatting events, filter the events, make sure each one has diff color, before u send you send events, filter those events
+           // if else statement. if button is clicked water, then event should feed from this thing. initialevents 
+           // if button is cliked on water, then initialevents = this.water.events else w.e
+           // what's my mood, see each event in diff color
+           // after that work on clickign to see more details 
+           // 
           // events={INITIAL_EVENTS}
 
           />
@@ -73,14 +108,14 @@ constructor(props){
     // debugger
     return (
       <div className='demo-app-sidebar'>
-        <div className='demo-app-sidebar-section'>
+        {/* <div className='demo-app-sidebar-section'>
           <h2>Instructions</h2>
           <ul>
             <li>Select dates and you will be prompted to create a new event</li>
             <li>Drag, drop, and resize events</li>
             <li>Click an event to delete it</li>
           </ul>
-        </div>
+        </div> */}
         {/* <div className='demo-app-sidebar-section'>
           <label>
             <input
@@ -100,6 +135,28 @@ constructor(props){
       </div>
     )
   }
+
+  // renderDropDown() {
+
+  // }
+
+  // renderButton() {
+  //   customButtons: {
+  //     myCustomButton: {
+  //       text: 'custom!',
+  //       click: function() {
+  //         alert('clicked the custom button!');
+  //       }
+  //     }
+  //   },
+  //   headerToolbar: {
+  //     left: 'prev,next today myCustomButton',
+  //     center: 'title',
+  //     right: 'dayGridMonth,timeGridWeek,timeGridDay'
+  //   }
+  // }
+
+
 
 //   handleWeekendsToggle = () => {
 //     this.setState({
@@ -180,11 +237,16 @@ constructor(props){
 }
 
 function renderEventContent(eventInfo) {
+  debugger
   return (
     <>
       <b>{eventInfo.timeText}</b>
       <i>{eventInfo.event.title}</i>
-      {/* <i>{eventInfo.event.extendedProps.water}</i> */}
+      <br></br>
+      <i>{eventInfo.event.extendedProps.water}</i>
+      <br></br>
+      <i>{eventInfo.event.extendedProps.meals.length}</i>
+      <i></i>
       {/* this makes it so i can render any */}
     </>
   )
@@ -194,11 +256,14 @@ console.log(event)
   return (
     <li key={event.id}>
       <b>{formatDate(event.start, {year: 'numeric', month: 'short', day: 'numeric'})}</b>
-      <i>{event.title}</i>
+      <br></br>
+      <i>Note: {event.title}</i>
       <br></br>
       <i>Mood Rating: {event.extendedProps && event.extendedProps.mood}</i>
       <br></br>
       <i>Cups: {event.extendedProps && event.extendedProps.water} cups</i>
+      <br></br>
+      <i>Meals: {event.extendedProps && event.extendedProps.meals.length} </i>
   {/* <i>Sleep: {event.extendedProps && event.extendedProps.sleeps}</i> */}
       {/* if there are extendedprops render mood, if not render ntohing */}
     </li>

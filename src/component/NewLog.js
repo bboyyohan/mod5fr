@@ -17,7 +17,12 @@ class NewLog extends React.Component {
         meal_time: '',
         meal_name: '',
         sleep_start: '',
-        sleep_end: ''
+        sleep_end: '',
+        sleep_start2: '',
+        sleep_end2: '',
+        sleep_start3: '',
+        sleep_end3: ''
+        
 
     }
 
@@ -38,7 +43,11 @@ class NewLog extends React.Component {
             meal_time: this.state.meal_time,
             meal_name: this.state.meal_name,
             sleep_start: this.state.sleep_start,
-            sleep_end: this.state.sleep_end
+            sleep_end: this.state.sleep_end,
+            sleep_start2: this.state.sleep_start2,
+            sleep_end2: this.state.sleep_end2,
+            sleep_start3: this.state.sleep_start3,
+            sleep_end3: this.state.sleep_end3
         }
         
         this.props.createLog(newLogObj)
@@ -46,6 +55,11 @@ class NewLog extends React.Component {
 
  
 
+    // try to make it so when you click button to add another input field to also doa fetchcall to create what u have so far
+    // fetch to sleep + associate it with params[:log_id]
+
+    //calll each individual log after mapping the array of the meal + sleep 
+    // sleep.find iterate through the array
     render() {
         return(
             <div>
@@ -111,12 +125,40 @@ class NewLog extends React.Component {
                     </div>
 
                     <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" > What time did you sleep: </label>
+                            <div className="col-sm-10">
+                                <input  name="sleep_start2" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
+                            </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" > What time did you wake up: </label>
+                            <div className="col-sm-10">
+                                <input  name="sleep_end2" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
+                            </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" > What time did you sleep: </label>
+                            <div className="col-sm-10">
+                                <input  name="sleep_start3" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
+                            </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" > What time did you wake up: </label>
+                            <div className="col-sm-10">
+                                <input  name="sleep_end3" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
+                            </div>
+                    </div>
+
+                    <div className="form-group row">
                         <label className="col-sm-2 col-form-label" > Note: </label>
                             <div className="col-sm-10">
                                 <input  name="title" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
                             </div>
                     </div>
-
+                
                     <input type="submit" value="Submit"/>
 
 
