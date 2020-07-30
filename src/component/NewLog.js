@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 
 const today = new Date()
@@ -14,17 +14,25 @@ class NewLog extends React.Component {
         water: '',
         mood: '',
         title: '',
-        meal_time: '',
-        meal_name: '',
         sleep_start: '',
         sleep_end: '',
         sleep_start2: '',
         sleep_end2: '',
         sleep_start3: '',
-        sleep_end3: ''
+        sleep_end3: '',
+        meal_time: '',
+        meal_name: '',
+        meal_time2: '',
+        meal_end2: '',
+        meal_time3: '',
+        meal_end3: '',
+        change_page: false
+
         
 
     }
+    //array of sleeps, everytime ou press plus button it pushes a sleep and adds an input
+
 
     changeHandler = (e) => {
         e.preventDefault()
@@ -40,17 +48,24 @@ class NewLog extends React.Component {
             water: this.state.water,
             mood: this.state.mood,
             title: this.state.title,
-            meal_time: this.state.meal_time,
-            meal_name: this.state.meal_name,
             sleep_start: this.state.sleep_start,
             sleep_end: this.state.sleep_end,
             sleep_start2: this.state.sleep_start2,
             sleep_end2: this.state.sleep_end2,
             sleep_start3: this.state.sleep_start3,
-            sleep_end3: this.state.sleep_end3
+            sleep_end3: this.state.sleep_end3,
+            meal_time: this.state.meal_time,
+            meal_name: this.state.meal_name,
+            meal_time2: this.state.meal_time2,
+            meal_name2: this.state.meal_name2,
+            meal_time3: this.state.meal_time3,
+            meal_name3: this.state.meal_name3
         }
         
         this.props.createLog(newLogObj)
+         this.setState({
+            change_page: true
+        })
     }
 
  
@@ -61,6 +76,9 @@ class NewLog extends React.Component {
     //calll each individual log after mapping the array of the meal + sleep 
     // sleep.find iterate through the array
     render() {
+        if (this.state.change_page === true) {
+            return( <Redirect to='/logs'/>)
+        }
         return(
             <div>
                 <h3>How was your day?</h3>
@@ -107,6 +125,34 @@ class NewLog extends React.Component {
                         <label className="col-sm-2 col-form-label" > What did you eat: </label>
                             <div className="col-sm-10">
                                 <input  name="meal_name" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
+                            </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" > What time did you eat: </label>
+                            <div className="col-sm-10">
+                                <input  name="meal_time2" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
+                            </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" > What did you eat: </label>
+                            <div className="col-sm-10">
+                                <input  name="meal_name2" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
+                            </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" > What time did you eat: </label>
+                            <div className="col-sm-10">
+                                <input  name="meal_time3" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
+                            </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" > What did you eat: </label>
+                            <div className="col-sm-10">
+                                <input  name="meal_name3" value={this.state.value} onChange={this.changeHandler} className="form-control"  />
                             </div>
                     </div>
 

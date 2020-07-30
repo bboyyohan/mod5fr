@@ -247,6 +247,13 @@ function renderEventContent(eventInfo) {
       <br></br>
       <i>{eventInfo.event.extendedProps.meals.length}</i>
       <i></i>
+      <i>{eventInfo.event.extendedProps.sleeps.reduce((total, sleepObj) => {
+        total += (sleepObj.start_time.split("T")[1].slice(0, 5) - sleepObj.end_time.split("T")[1].slice(0, 5))
+      return total}, 0)
+      } hours </i>
+
+      {/* 0 is the start value  */}
+
       {/* this makes it so i can render any */}
     </>
   )
