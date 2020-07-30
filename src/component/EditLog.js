@@ -5,6 +5,8 @@
 
 import React from 'react'
 import {Link, Redirect} from 'react-router-dom'
+import EditMealsLog from './EditMealsLog'
+import EditSleepsLog from './EditSleepsLog'
 
 
 
@@ -14,30 +16,37 @@ class EditLog extends React.Component {
 
     
 
+    // state = {
+    //     //come back later and change, hard coded the -0 because single digit months wont display the 0 without it
+    //     start: this.props.editObject.start,
+    //     water: this.props.editObject.water,
+    //     mood: this.props.editObject.mood,
+    //     title: this.props.editObject.title,
+    //     // sleeps: this.props.editObject.sleeps[0].quantity,
+    //     // meals: this.props.editObject.meals[0].quantity
+    //     meal_name: this.props.editObject.meals[0].name,
+    //     meal_time: this.props.editObject.meals[0].time.split("T")[1].slice(0, 5),
+
+    //     meal_name2: this.props.editObject.meals[1].name,
+    //     meal_time2: this.props.editObject.meals[1].time.split("T")[1].slice(0, 5),
+    //     meal_name3: this.props.editObject.meals[2].name,
+    //     meal_time3: this.props.editObject.meals[2].time.split("T")[1].slice(0, 5),
+
+    //     sleep_start: this.props.editObject.sleeps[0].start_time.split("T")[1].slice(0, 5),
+    //     sleep_end: this.props.editObject.sleeps[0].end_time.split("T")[1].slice(0, 5),
+
+    //     sleep_start2: this.props.editObject.sleeps[1].start_time.split("T")[1].slice(0, 5),
+    //     sleep_end2: this.props.editObject.sleeps[1].end_time.split("T")[1].slice(0, 5),
+    //     sleep_start3: this.props.editObject.sleeps[2].start_time.split("T")[1].slice(0, 5),
+    //     sleep_end3: this.props.editObject.sleeps[2].end_time.split("T")[1].slice(0, 5)
+    //     // change_page: false
+    // }
+
     state = {
-        //come back later and change, hard coded the -0 because single digit months wont display the 0 without it
-        start: this.props.editObject.start,
-        water: this.props.editObject.water,
-        mood: this.props.editObject.mood,
-        title: this.props.editObject.title,
-        // sleeps: this.props.editObject.sleeps[0].quantity,
-        // meals: this.props.editObject.meals[0].quantity
-        meal_name: this.props.editObject.meals[0].name,
-        meal_time: this.props.editObject.meals[0].time.split("T")[1].slice(0, 5),
-
-        meal_name2: this.props.editObject.meals[1].name,
-        meal_time2: this.props.editObject.meals[1].time.split("T")[1].slice(0, 5),
-        meal_name3: this.props.editObject.meals[2].name,
-        meal_time3: this.props.editObject.meals[2].time.split("T")[1].slice(0, 5),
-
-        sleep_start: this.props.editObject.sleeps[0].start_time.split("T")[1].slice(0, 5),
-        sleep_end: this.props.editObject.sleeps[0].end_time.split("T")[1].slice(0, 5),
-
-        sleep_start2: this.props.editObject.sleeps[1].start_time.split("T")[1].slice(0, 5),
-        sleep_end2: this.props.editObject.sleeps[1].end_time.split("T")[1].slice(0, 5),
-        sleep_start3: this.props.editObject.sleeps[2].start_time.split("T")[1].slice(0, 5),
-        sleep_end3: this.props.editObject.sleeps[2].end_time.split("T")[1].slice(0, 5)
-        // change_page: false
+        start: '',
+        water: 0,
+        mood: 0,
+        title: ''
     }
 
     changeHandler = (e) => {
@@ -76,12 +85,23 @@ class EditLog extends React.Component {
         //     return( <Redirect to='/logs'/>)
         // }
     }
-
+    componentDidMount(){
+        this.setState({
+            start: this.props.editObject.start,
+            water: this.props.editObject.water,
+            mood: this.props.editObject.mood,
+            title: this.props.editObject.title
+        })
+    }
  
+    //set up a name for each one of the input forms
+    // do component did mount and set each individual one itself
+    // dont do this.props.... to change it 
+    // value = this.props.updateLog
+    // onchange 
 
     render() {
-        debugger    
-        
+        // debugger    
         return(
             <div>
                 <h3>Edit</h3>
@@ -125,7 +145,15 @@ class EditLog extends React.Component {
                             </div>
                     </div> */}
 
-                    <div className="form-group row">
+                    {this.props.editObject.meals.map(meal => {
+                        return <EditMealsLog mealObj={meal} key={meal.id} />
+                    })}
+
+                    {this.props.editObject.sleeps.map(sleep => {
+                        return <EditSleepsLog sleepObj={sleep} key={sleep.id} />
+                    })}
+
+                    {/* <div className="form-group row">
                         <label className="col-sm-2 col-form-label" > What time did you eat: </label>
                             <div className="col-sm-10">
                                 <input  name="meal_time" value={this.state.meal_time} onChange={this.changeHandler} className="form-control"  />
@@ -137,9 +165,11 @@ class EditLog extends React.Component {
                             <div className="col-sm-10">
                                 <input  name="meal_name" value={this.state.meal_name} onChange={this.changeHandler} className="form-control"  />
                             </div>
-                    </div>
+                    </div> */}
+                        
+                        {/* remember to switch mealtimevalues if dynamic render dont work */}
 
-                    <div className="form-group row">
+                    {/* <div className="form-group row">
                         <label className="col-sm-2 col-form-label" > What time did you eat: </label>
                             <div className="col-sm-10">
                                 <input  name="meal_time2" value={this.state.meal_time} onChange={this.changeHandler} className="form-control"  />
@@ -207,7 +237,7 @@ class EditLog extends React.Component {
                             <div className="col-sm-10">
                                 <input  name="sleep_end3" value={this.state.sleep_end} onChange={this.changeHandler} className="form-control"  />
                             </div>
-                    </div>
+                    </div> */}
 
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label" > Note: </label>

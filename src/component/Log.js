@@ -14,7 +14,8 @@ class Log extends React.Component {
     state = {
 
     }
-    clickHandler = () => {
+    clickHandler = (e) => {
+        debugger
         let editObj = this.props.logObj
         this.props.getEditObj(editObj)
     }

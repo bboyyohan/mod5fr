@@ -75,7 +75,7 @@ class App extends React.Component {
   }
 
   getEditObj = (editObj) => {
-    debugger
+    // debugger
     this.setState({
       editObject: editObj
     })
