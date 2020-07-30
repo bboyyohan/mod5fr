@@ -46,7 +46,9 @@ class EditLog extends React.Component {
         start: '',
         water: 0,
         mood: 0,
-        title: ''
+        title: '',
+        sleeps: [],
+        meals: []
     }
 
     changeHandler = (e) => {
@@ -56,8 +58,29 @@ class EditLog extends React.Component {
     }
 
     handleSubmit = (e) => {
+        // debugger
         e.preventDefault()
         // debugger 
+        // let updateLogObj = {
+        //     id: this.props.editObject.id,
+        //     user_id: this.props.currentUser.id,
+        //     start: this.state.start,
+        //     water: this.state.water,
+        //     mood: this.state.mood,
+        //     title: this.state.title,
+        //     meal_name: this.state.meal_name,
+        //     meal_time: this.state.meal_time,
+        //     meal_name2: this.state.meal_name2,
+        //     meal_time2: this.state.meal_time2,
+        //     meal_name3: this.state.meal_name3,
+        //     meal_time3: this.state.meal_time3,
+        //     sleep_start: this.state.sleep_start,
+        //     sleep_end: this.state.sleep_end,
+        //     // sleeps: this.state.sleeps,
+        //     // meals: this.state.meals
+        // }
+
+
         let updateLogObj = {
             id: this.props.editObject.id,
             user_id: this.props.currentUser.id,
@@ -65,16 +88,9 @@ class EditLog extends React.Component {
             water: this.state.water,
             mood: this.state.mood,
             title: this.state.title,
-            meal_name: this.state.meal_name,
-            meal_time: this.state.meal_time,
-            meal_name2: this.state.meal_name2,
-            meal_time2: this.state.meal_time2,
-            meal_name3: this.state.meal_name3,
-            meal_time3: this.state.meal_time3,
-            sleep_start: this.state.sleep_start,
-            sleep_end: this.state.sleep_end,
-            // sleeps: this.state.sleeps,
-            // meals: this.state.meals
+
+
+            // sleeps: 
         }
         
         this.props.updateLog(updateLogObj)
@@ -85,12 +101,33 @@ class EditLog extends React.Component {
         //     return( <Redirect to='/logs'/>)
         // }
     }
+
+    makeSleepsArray = (key, value, id) => {
+        // debugger
+        let sleep = this.state.sleeps.filter(sleep => sleep.id === id)
+        let nonsleepObj = this.state.sleeps.filter(sleep => sleep.id !== id)
+        if (key === 'start_time') {
+            sleep[0].start_time = value
+        } else if (key === 'end_time'){
+            sleep[0].end_time = value
+        }
+
+        // debugger
+
+        this.setState({
+            sleeps: [...nonsleepObj, sleep[0]]
+        })
+        
+
+    }
     componentDidMount(){
         this.setState({
             start: this.props.editObject.start,
             water: this.props.editObject.water,
             mood: this.props.editObject.mood,
-            title: this.props.editObject.title
+            title: this.props.editObject.title,
+            sleeps: this.props.editObject.sleeps,
+            meals: this.props.editObject.meals
         })
     }
  
@@ -150,7 +187,7 @@ class EditLog extends React.Component {
                     })}
 
                     {this.props.editObject.sleeps.map(sleep => {
-                        return <EditSleepsLog sleepObj={sleep} key={sleep.id} />
+                        return <EditSleepsLog sleepObj={sleep} key={sleep.id} sleepArr={this.makeSleepsArray} />
                     })}
 
                     {/* <div className="form-group row">

@@ -1,3 +1,6 @@
+
+//changes... commented out eventsSet
+
 import React from 'react'
 import FullCalendar, { formatDate } from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
@@ -6,7 +9,7 @@ import interactionPlugin from '@fullcalendar/interaction'
 import { INITIAL_EVENTS, createEventId } from './Event-utils'
 import '../calendar.css'
 
-export default class DemoApp extends React.Component {
+export default class Calendar2 extends React.Component {
 
 //   state = {
 //     weekendsVisible: true,
@@ -81,7 +84,8 @@ constructor(props){
             select={this.handleDateSelect}
             eventContent={renderEventContent} // custom render function
             eventClick={this.handleEventClick}
-            eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
+            // eventsSet={this.handleEvents} 
+            // called after events are initialized/added/changed/removed
             /* you can update a remote database when these fire:
             eventAdd={function(){}}
             eventChange={function(){}}
@@ -89,7 +93,7 @@ constructor(props){
             */
           //  customButtons={this.renderButton()}
 
-           initialEvents={this.formatEvents()}
+           events={this.formatEvents()}
            //after formatting events, filter the events, make sure each one has diff color, before u send you send events, filter those events
            // if else statement. if button is clicked water, then event should feed from this thing. initialevents 
            // if button is cliked on water, then initialevents = this.water.events else w.e
@@ -195,7 +199,7 @@ constructor(props){
   }
 
   formatEvents = () => {
-    // debugger
+    debugger
     return this.state.currentEvents.map(log => {
       const {title, start} = log
       
@@ -213,7 +217,8 @@ constructor(props){
         start: startTime,
         allDay: true,
         display: 'background',
-        color: '#ff9f89',
+        backgroundColor: '#ff9f89',
+        textColor: '#8B0000',
 
         
         extendedProps: {...log}
@@ -224,7 +229,7 @@ constructor(props){
         start: startTime,
         allDay: true,
         display: 'background',
-        color: '#33BBFF',
+        backgroundColor: '#33BBFF',
 
         
         extendedProps: {...log}
@@ -237,7 +242,7 @@ constructor(props){
 }
 
 function renderEventContent(eventInfo) {
-  debugger
+  // debugger
   return (
     <>
       <b>{eventInfo.timeText}</b>

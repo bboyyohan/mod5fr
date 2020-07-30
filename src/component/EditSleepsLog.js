@@ -16,12 +16,13 @@ class EditSleepsLog extends React.Component {
     changeHandler = (e) => {
         this.setState({
             [e.target.name]: e.target.value
-        })
+        }, this.props.sleepArr(e.target.name, e.target.value, this.props.sleepObj.id))
     }
+
     render(){
         return(
             
-        <div>
+        <div id={this.props.sleepObj.id}>
             <div className="form-group row">
                 <label className="col-sm-2 col-form-label" > What time did you sleep: </label>
                     <div className="col-sm-10">

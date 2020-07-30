@@ -84,7 +84,7 @@ class App extends React.Component {
   //atm the log's actual id changes since the id you see in /logs isnt the actual log's id
   updateLog = (updateObj) => {
     // console.log("edit")
-    debugger
+    // debugger
     fetch(`http://localhost:3000/logs/${updateObj.id}`, {
       // method: 'PUT',
       method: 'PATCH',
