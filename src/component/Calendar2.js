@@ -9,7 +9,7 @@ import interactionPlugin from '@fullcalendar/interaction'
 import { INITIAL_EVENTS, createEventId } from './Event-utils'
 import '../calendar.css'
 
-export default class Calendar2 extends React.Component {
+export default class DemoApp extends React.Component {
 
 //   state = {
 //     weekendsVisible: true,
@@ -84,7 +84,7 @@ constructor(props){
             select={this.handleDateSelect}
             eventContent={renderEventContent} // custom render function
             eventClick={this.handleEventClick}
-            // eventsSet={this.handleEvents} 
+            eventsSet={this.handleEvents} 
             // called after events are initialized/added/changed/removed
             /* you can update a remote database when these fire:
             eventAdd={function(){}}
@@ -93,7 +93,7 @@ constructor(props){
             */
           //  customButtons={this.renderButton()}
 
-           events={this.formatEvents()}
+           initialEvents={this.formatEvents()}
            //after formatting events, filter the events, make sure each one has diff color, before u send you send events, filter those events
            // if else statement. if button is clicked water, then event should feed from this thing. initialevents 
            // if button is cliked on water, then initialevents = this.water.events else w.e
@@ -199,7 +199,7 @@ constructor(props){
   }
 
   formatEvents = () => {
-    debugger
+    // debugger
     return this.state.currentEvents.map(log => {
       const {title, start} = log
       
@@ -252,10 +252,11 @@ function renderEventContent(eventInfo) {
       <br></br>
       <i>{eventInfo.event.extendedProps.meals.length}</i>
       <i></i>
-      <i>{eventInfo.event.extendedProps.sleeps.reduce((total, sleepObj) => {
-        total += (sleepObj.start_time.split("T")[1].slice(0, 5) - sleepObj.end_time.split("T")[1].slice(0, 5))
-      return total}, 0)
-      } hours </i>
+      {/* <i>{eventInfo.event.extendedProps.sleeps.map( sleepObj => {
+       return  (parseInt(sleepObj.start_time.split("T")[1].slice(0, 5).split(":")[0]) - parseInt(sleepObj.end_time.split("T")[1].slice(0, 5).split(":")[0]))}
+     
+      )}</i> */}
+
 
       {/* 0 is the start value  */}
 

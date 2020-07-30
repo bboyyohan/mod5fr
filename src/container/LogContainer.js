@@ -10,27 +10,12 @@ class LogContainer extends React.Component {
     constructor(){
         super()
         this.state = {
-            date: null
+            date: null,
+
             
         }
     }
 
-    // createLog = () => {
-    //     fetch("http://localhost:3000/logs", {
-    //        method: 'POST',
-    //        headers: {
-    //            'Accept': 'application/json',
-    //            'Content-Type': 'application/json'
-    //        },
-    //        body: JSON.stringify({
-
-    //        }) 
-    //     })
-    // }
-
-    // createLog = (e) => {
-       
-    // }
 
 
     render(){

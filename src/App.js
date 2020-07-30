@@ -110,11 +110,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navbar currentUser={this.currentUser}/>
+        <Navbar currentUser={this.currentUser} />
           <Switch>
               <Route exact path="/" render={() =>
-                // this.state.currentUser ? <Redirect to='/logs' /> : <Home />
-                <Home />
+                this.state.currentUser ? <Redirect to='/logs' /> : <Home />
                 // changed since user couldnt access home page if logged in
               }/>
 
